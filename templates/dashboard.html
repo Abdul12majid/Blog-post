@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for messages in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{messages}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<br/>
+
+<div class="card text-center">
+  <div class="card-header">
+    {{current_user.name_db}} | {{x}}
+  </div>
+  <div class="card-body">
+  	<div class="container">
+  	<div class="row">
+  	<div class="col-8">
+  	
+    <h5 class="card-title">User Info</h5>
+    <p class="card-text" style="text-align: left;">
+Name: {{current_user.name_db}} <br/>
+Username: {{current_user.username_db }} <br/>
+Date Joined: {{current_user.date_added}}<br/>
+About Author: {{current_user.about_author}}<br/>
+Profile pic: {{current_user.profile_pic_db}}<br/>
+</p>
+  </div>
+  <div class="col-4">
+        	<img src="{{url_for('static', filename='images/default_pic.png')}}" width="80" align="right">
+        </div>
+  </div>
+  <div class="card-footer text-muted">
+        <a href="{{url_for('update_user', id=x)}}" class="btn btn-primary">Update info</a> |  <a href="{{url_for('logout')}}" class="btn btn-danger">Log out</a>
+        
+  </div>
+</div>
+<br/> <br/>
+
+{% endblock %}

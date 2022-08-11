@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for messages in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{messages}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<h3>Sign Up</h3>
+<br/>
+<form method="POST">
+	{{form.hidden_tag()}}
+	{{form.name.label(class="form-label")}}
+	{{form.name(class="form-control")}}
+	{{form.username.label(class="form-label")}}
+	{{form.username(class="form-control")}}
+	{{form.about_author.label(class="form-label")}}
+	{{form.about_author(class="form-control")}}
+	{{form.password.label(class="form-label")}}
+	{{form.password(class="form-control")}}
+	{{form.password2.label(class="form-label")}}
+	{{form.password2(class="form-control")}}
+	<br/>
+	{{form.submit(class="btn btn-secondary")}}
+</form>
+<br/>
+{% for all in all_info %}
+{{all.name_db}}<br/>
+{{all.username_db}}<br/>
+{{all.password_hash}}<br/>
+<a href="{{url_for('update_user', id=all.id)}}">update</a> || <a href="{{url_for('delete_user', id=all.id)}}">Delete</a><br/>
+{% endfor %}
+
+{% endblock %}
