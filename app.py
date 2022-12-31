@@ -16,7 +16,7 @@ import os
 app = Flask(__name__)
 app.config["SECRET_KEY"]='app_py'
 #app.config["SQLALCHEMY_DATABASE_URI"]='sqlite:///#Blog_Post.db'
-app.config["SQLALCHEMY_DATABASE_URI"]= 'postgres://qansdymsgycayb:7034de27fc8e3949bbe8a556795ba1fd0a4c9f0c8d3c9d5e8476414f8718b4ee@ec2-34-203-182-65.compute-1.amazonaws.com:5432/d9fjb1hm80bbta'
+app.config["SQLALCHEMY_DATABASE_URI"]='mysql+pymysql://root:Non12$ense@localhost/users'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 ckeditor = CKEditor(app)
@@ -152,7 +152,7 @@ def login():
 			return redirect (url_for("sign_up"))
 	return render_template("login.html", form=form)
 
-@app.route("/logout", methods=["POST", "GET"])
+@app.route("/logout""", methods=["POST", "GET"])
 @login_required
 def logout():
 	logout_user()
